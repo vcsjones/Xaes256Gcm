@@ -28,8 +28,7 @@ public static class Xaes256GcmTests {
         Assert.Equal(testVector.Plaintext, decrypted);
     }
 
-#if RUN_ACCUMULATION_TESTS
-
+#if NET9_0_OR_GREATER
     [Theory]
     [InlineData(10_000, "e6b9edf2df6cec60c8cbd864e2211b597fb69a529160cd040d56c0c210081939")]
     [InlineData(1_000_000, "2163ae1445985a30b60585ee67daa55674df06901b890593e824b8a7c885ab15")]
