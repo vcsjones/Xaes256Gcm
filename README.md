@@ -19,7 +19,8 @@ byte[] plaintext = "Hello XAES-256-GCM from .NET"u8.ToArray();
 using Xaes256Gcm xaes = new(key);
 
 // Seal, or encrypt
-byte[] ciphertext = xaes.Seal(plaintext, nonce); // AAD can optionally be passed as a 3rd argument
+// AAD can optionally be passed as a 3rd argument
+byte[] ciphertext = xaes.Seal(plaintext, nonce);
 
 // Open, or decrypt
 byte[] decrypted = xaes.Open(ciphertext, nonce);
