@@ -28,7 +28,7 @@ public sealed class Xaes256Gcm : IDisposable {
     public static int KeySize => 32;
 
     /// <summary>
-    /// Gets the key size, in bytes.
+    /// Gets amount of overhead that ciphertext includes, in bytes.
     /// </summary>
     public static int Overhead => AES_GCM_TAG_SIZE;
 
