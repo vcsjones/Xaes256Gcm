@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 
 namespace Xaes256Gcm.Tests;
 
@@ -26,6 +27,36 @@ public static class Xaes256GcmTests {
         byte[] decrypted = xaes.Open(ciphertext, testVector.Nonce, testVector.Aad);
         Assert.Equal(testVector.Plaintext, decrypted);
     }
+
+#if RUN_ACCUMULATION_TESTS
+
+    [Theory]
+    [InlineData(10_000, "e6b9edf2df6cec60c8cbd864e2211b597fb69a529160cd040d56c0c210081939")]
+    [InlineData(1_000_000, "2163ae1445985a30b60585ee67daa55674df06901b890593e824b8a7c885ab15")]
+    public static void TestAccumulated(int iterations, string expected) {
+        using Shake128 s = new();
+        using Shake128 d = new();
+
+        for (int i = 0; i < iterations; i++) {
+            byte[] key = s.Read(Xaes256Gcm.KeySize);
+            byte[] nonce = s.Read(Xaes256Gcm.NonceSize);
+            byte[] lenByte;
+            lenByte = s.Read(1);
+            byte[] plaintext = s.Read(lenByte[0]);
+            s.Read(lenByte);
+            byte[] aad = s.Read(lenByte[0]);
+
+            using Xaes256Gcm xaes = new(key);
+            byte[] ciphertext = xaes.Seal(plaintext, nonce, aad);
+            byte[] decrypted = xaes.Open(ciphertext, nonce, aad);
+            Assert.Equal(plaintext, decrypted);
+            d.AppendData(ciphertext);
+        }
+
+        Assert.Equal(expected, Convert.ToHexStringLower(d.GetHashAndReset(32)));
+    }
+
+#endif
 
     public record TestVector(byte[] Key, byte[] Nonce, byte[] Plaintext, byte[] Ciphertext, byte[]? Aad = default)
     {

@@ -10,6 +10,10 @@
     <RootNamespace>Xaes256Gcm.Tests</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="$(RunAccumulationTests) == 'true'">
+    <DefineConstants>$(DefineConstants);RUN_ACCUMULATION_TESTS</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
