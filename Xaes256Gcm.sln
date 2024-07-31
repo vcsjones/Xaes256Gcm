@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xaes256Gcm", "src\Xaes256Gc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xaes256GcmTests", "test\Xaes256GcmTests.csproj", "{42A8B62D-B72A-40E9-A6FF-1763B2CD70B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xaes256GcmBenches", "bench\Xaes256GcmBenches.csproj", "{9A991AE0-10AC-424D-8B87-76EC70290494}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{42A8B62D-B72A-40E9-A6FF-1763B2CD70B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42A8B62D-B72A-40E9-A6FF-1763B2CD70B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42A8B62D-B72A-40E9-A6FF-1763B2CD70B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A991AE0-10AC-424D-8B87-76EC70290494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A991AE0-10AC-424D-8B87-76EC70290494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A991AE0-10AC-424D-8B87-76EC70290494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A991AE0-10AC-424D-8B87-76EC70290494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
