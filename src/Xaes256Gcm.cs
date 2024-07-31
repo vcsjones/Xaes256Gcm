@@ -207,8 +207,8 @@ public sealed class Xaes256Gcm : IDisposable {
 
     private void DeriveKey(ReadOnlySpan<byte> nonce, Span<byte> destination) {
         Debug.Assert(destination.Length == AES_BLOCK_SIZE * 2);
-        Span<byte> m1 = [0, 1, (byte)'X', 0, ..nonce];
-        Span<byte> m2 = [0, 2, (byte)'X', 0, ..nonce];
+        Span<byte> m1 = [0, 1, 0x58, 0, ..nonce];
+        Span<byte> m2 = [0, 2, 0x58, 0, ..nonce];
         XorInPlace(m1, _k1);
         XorInPlace(m2, _k1);
         _aes.EncryptEcb(m1, m1, PaddingMode.None);
